@@ -41,9 +41,12 @@
       margin-top: 20px;
       border-radius: 20px;
     }
+    .audio-control {
+      margin-top: 20px;
+    }
   </style>
 </head>
-<body onload="ucapanAwal()">
+<body onload="ucapanAwal(); mainkanMusik();">
 
   <h1>🌟 SEMANGAT AYANGKUUUU! 🌟</h1>
   <p id="awal"></p>
@@ -51,6 +54,16 @@
   <button class="btn" onclick="kasihSemangat()">Aku Butuh Semangat 🐣</button>
   <div class="msg" id="semangat"></div>
   <div id="gifArea"></div>
+
+  <!-- Musik Latar -->
+  <div class="audio-control">
+    <audio id="musikLatar" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-smile.mp3" type="audio/mpeg">
+      Browser kamu tidak mendukung audio.
+    </audio>
+    <br>
+    <button class="btn" onclick="toggleMusik()">🔊 Play/Pause Musik</button>
+  </div>
 
   <script>
     function ucapanAwal() {
@@ -84,6 +97,23 @@
       const gif = gifs[Math.floor(Math.random() * gifs.length)];
       document.getElementById("semangat").textContent = pesan;
       document.getElementById("gifArea").innerHTML = `<img src="${gif}" alt="Semangat Ayang!">`;
+    }
+
+    function mainkanMusik() {
+      const audio = document.getElementById("musikLatar");
+      audio.volume = 0.2; // Volume pelan
+      audio.play().catch(() => {
+        console.log("Autoplay ditolak browser. Gunakan tombol Play.");
+      });
+    }
+
+    function toggleMusik() {
+      const audio = document.getElementById("musikLatar");
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     }
   </script>
 
