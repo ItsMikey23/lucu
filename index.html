@@ -2,69 +2,106 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kamu Lucu Banget ❤️</title>
+  <title>Cinta Seabsurd Ini 😘</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive;
-      background-color: #ffe6f0;
-      color: #333;
+      background-color: #fff0f5;
+      color: #ff1493;
       text-align: center;
       padding: 50px;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 48px;
+      animation: goyang 1s infinite alternate;
+    }
+    @keyframes goyang {
+      from { transform: rotate(-2deg); }
+      to { transform: rotate(2deg); }
     }
     .heart {
-      font-size: 50px;
-      animation: float 2s infinite;
+      position: absolute;
+      animation: terbang 4s linear infinite;
+      font-size: 24px;
+      color: red;
     }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+    @keyframes terbang {
+      0% { top: 100vh; left: 50vw; opacity: 0; }
+      100% { top: -10vh; left: 55vw; opacity: 1; }
     }
     button {
-      padding: 10px 20px;
-      background-color: #ff99cc;
+      padding: 15px 30px;
+      background-color: #ff69b4;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 20px;
+      font-size: 18px;
+      color: white;
+      margin-top: 20px;
       cursor: pointer;
+      box-shadow: 0px 0px 10px pink;
     }
     #gombal {
       margin-top: 20px;
-      font-style: italic;
-      color: #b30059;
+      font-weight: bold;
+      color: #ff0066;
+    }
+    img {
+      width: 250px;
+      margin-top: 20px;
     }
   </style>
 </head>
-<body>
+<body onload="mainkanSuara()">
 
-  <div class="heart">❤️</div>
-  <h1>Hai Cinta! 🥰</h1>
+  <audio id="suara">
+    <source src="https://www.myinstants.com/media/sounds/ayang-masuk.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="heart">💘</div>
+  <h1>AYANGGGGGG 😍</h1>
   <p>Kita udah bersama selama:</p>
   <h2 id="counter">...</h2>
 
-  <button onclick="tampilGombal()">Klik kalau kamu lucu 😘</button>
+  <button onclick="tampilGombal()">Pencet aku, Ayang 😚</button>
   <p id="gombal"></p>
+  <div id="gifArea"></div>
 
   <script>
-    // Hitung hari jadian
-    const startDate = new Date("2021-04-10"); // ganti tanggal jadian
-    const today = new Date();
-    const diffTime = Math.abs(today - startDate);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    document.getElementById("counter").textContent = `${diffDays} hari 🗓️`;
+    // Suara
+    function mainkanSuara() {
+      const suara = document.getElementById("suara");
+      suara.play().catch(() => console.log("Suara autoplay ditolak browser 😢"));
+    }
 
-    // Gombalan acak
+    // Hitung hari
+    const startDate = new Date("2022-01-01");
+    const now = new Date();
+    const selisih = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById("counter").innerText = `${selisih} hari penuh cinta, drama, dan ngemil bareng 🍟`;
+
+    // Gombalan
     const gombalan = [
-      "Kamu tahu nggak? Senyummu bikin aku lupa kata sandi.",
-      "Kalau kamu bintang, aku mau jadi langitnya.",
-      "Nggak perlu kopi, cukup kamu yang bikin aku melek terus.",
-      "Aku butuh vitamin U 😍",
-      "Kamu itu kayak Wi-Fi, soalnya aku merasa konek terus!"
+      "Ayang... Kamu itu kaya charger. Nempel bentar, langsung hidup aku ⚡",
+      "Kalau kamu dinosaurus, kamu pasti... DINO-SAYANG 🦖💘",
+      "Aku bukan lebah, tapi aku nyari kamu terus. Buzz~",
+      "Kalo cinta itu ujian, kamu pasti jawabanku yang paling bener 😇",
+      "Kamu tau nggak? Setiap liat kamu, aku pengen nge-save... soalnya kamu rare banget!"
+    ];
+
+    const gifList = [
+      "https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif",
+      "https://media.giphy.com/media/l0MYOUI5XfRkCzRVe/giphy.gif",
+      "https://media.giphy.com/media/3orieQk3PZoU9Fdtrk/giphy.gif",
+      "https://media.giphy.com/media/9Y5BbDSkSTiY8/giphy.gif"
     ];
 
     function tampilGombal() {
-      const random = Math.floor(Math.random() * gombalan.length);
-      document.getElementById("gombal").textContent = gombalan[random];
+      const index = Math.floor(Math.random() * gombalan.length);
+      document.getElementById("gombal").textContent = gombalan[index];
+
+      const gif = gifList[Math.floor(Math.random() * gifList.length)];
+      document.getElementById("gifArea").innerHTML = `<img src="${gif}" alt="kocak">`;
     }
   </script>
 
