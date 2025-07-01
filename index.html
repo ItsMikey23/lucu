@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Untuk Kamu, yang Sedang Berjuang 🌿</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -51,17 +51,11 @@
       transition: opacity 0.5s ease-in-out;
       min-height: 50px;
     }
-    .rabbit {
-      width: 150px;
-      opacity: 0;
-      transform: scale(0);
-      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-      margin-top: 20px;
-    }
     .surat {
       margin-top: 30px;
       max-width: 700px;
-      font-size: 1rem;
+      font-size: 1.2rem;
+      font-family: 'Dancing Script', cursive;
       background-color: #ffffffcc;
       padding: 30px;
       border-radius: 12px;
@@ -93,12 +87,9 @@
   <!-- Tombol Surat -->
   <button id="btnSurat" onclick="tampilkanSurat()">💌 Surat Kecil Untukmu</button>
 
-  <!-- Rabbit GIF -->
-  <img src="https://media.giphy.com/media/3oz8xqZsDaOSHaqLCw/giphy.gif" id="rabbit" class="rabbit" alt="Rabbit Invasion">
-
   <!-- Surat Cinta -->
   <div class="surat" id="suratCinta">
-    <h2>💌 Surat Kecil Untukmu</h2>
+    <h2>💌</h2>
     <p>
       Hai kamu, orang yang luar biasa...<br><br>
       Aku tahu beberapa hari bisa terasa berat, dan kadang kamu lupa betapa berharganya dirimu.  
@@ -128,7 +119,6 @@
     function tampilkanQuote() {
       const quote = quotes[Math.floor(Math.random() * quotes.length)];
       const quoteArea = document.getElementById("quoteArea");
-
       quoteArea.style.opacity = 0;
       setTimeout(() => {
         quoteArea.innerText = quote;
@@ -142,27 +132,17 @@
         musikDimainkan = true;
       }
 
-      // Tampilkan tombol surat setelah delay
       setTimeout(() => {
         document.getElementById("btnSurat").style.display = "inline-block";
       }, 1500);
     }
 
     function tampilkanSurat() {
-      const rabbit = document.getElementById("rabbit");
       const surat = document.getElementById("suratCinta");
-
-      // Animasi kelinci
-      rabbit.style.opacity = 1;
-      rabbit.style.transform = "scale(1)";
-
-      // Tampilkan surat setelah kelinci
+      surat.style.display = 'block';
       setTimeout(() => {
-        surat.style.display = 'block';
-        setTimeout(() => {
-          surat.style.opacity = 1;
-        }, 100);
-      }, 1000);
+        surat.style.opacity = 1;
+      }, 100);
     }
   </script>
 
