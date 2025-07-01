@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Untuk Kamu, yang Sedang Berjuang 🌿</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -60,15 +61,16 @@
     }
   </style>
 </head>
-<body onload="mulaiMusik()">
+<body>
 
   <h1>Untuk Kamu, yang Sedang Berjuang</h1>
   <p>Kamu nggak sendiri. Hari ini mungkin berat, tapi kamu jauh lebih kuat dari yang kamu kira. 🌤️</p>
 
-  <button onclick="tampilkanKata()">Butuh semangat? Klik di sini 💛</button>
+  <button onclick="tampilkanKataDanMusik()">Butuh semangat? Klik di sini 💛</button>
 
   <div class="quote" id="quoteArea">...</div>
 
+  <!-- Musik -->
   <audio id="musik" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
     Browser kamu tidak mendukung audio.
@@ -83,7 +85,9 @@
       "Kamu adalah alasan seseorang tersenyum hari ini. Jangan meremehkan dirimu."
     ];
 
-    function tampilkanKata() {
+    let musikDimainkan = false;
+
+    function tampilkanKataDanMusik() {
       const quote = quotes[Math.floor(Math.random() * quotes.length)];
       const quoteArea = document.getElementById("quoteArea");
       quoteArea.style.opacity = 0;
@@ -91,14 +95,15 @@
         quoteArea.innerText = quote;
         quoteArea.style.opacity = 1;
       }, 300);
-    }
 
-    function mulaiMusik() {
-      const audio = document.getElementById("musik");
-      audio.volume = 0.2;
-      audio.play().catch(() => {
-        console.log("Musik tidak bisa autoplay karena diblokir browser.");
-      });
+      if (!musikDimainkan) {
+        const audio = document.getElementById("musik");
+        audio.volume = 0.2;
+        audio.play().catch(() => {
+          console.log("Autoplay masih ditolak.");
+        });
+        musikDimainkan = true;
+      }
     }
   </script>
 
