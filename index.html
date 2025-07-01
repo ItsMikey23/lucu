@@ -2,118 +2,103 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Semangat Ayangkuuu! 💖</title>
+  <title>Untuk Kamu, yang Sedang Berjuang 🌿</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(135deg, #ffe0ec, #d0f0ff);
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f0;
+      color: #2e2e2e;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
       text-align: center;
-      padding: 50px;
-      color: #ff3399;
     }
+
     h1 {
-      font-size: 3em;
-      animation: ayangMasuk 1s infinite alternate;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
-    @keyframes ayangMasuk {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
     }
-    .btn {
-      margin-top: 30px;
-      padding: 15px 25px;
-      font-size: 20px;
-      background-color: #ff99cc;
-      color: white;
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
       border: none;
-      border-radius: 15px;
+      background-color: #a3c4a8;
+      color: white;
+      border-radius: 6px;
       cursor: pointer;
-      box-shadow: 0px 0px 10px #ff66b2;
+      transition: background-color 0.3s;
     }
-    .msg {
-      font-size: 24px;
+
+    button:hover {
+      background-color: #8cbf97;
+    }
+
+    .quote {
       margin-top: 30px;
-      color: #cc0066;
-      font-weight: bold;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #444;
+      max-width: 500px;
+      transition: opacity 0.5s ease-in-out;
     }
-    img {
-      width: 250px;
-      margin-top: 20px;
-      border-radius: 20px;
-    }
-    .audio-control {
-      margin-top: 20px;
+
+    audio {
+      display: none;
     }
   </style>
 </head>
-<body onload="ucapanAwal(); mainkanMusik();">
+<body onload="mulaiMusik()">
 
-  <h1>🌟 SEMANGAT AYANGKUUUU! 🌟</h1>
-  <p id="awal"></p>
-  
-  <button class="btn" onclick="kasihSemangat()">Aku Butuh Semangat 🐣</button>
-  <div class="msg" id="semangat"></div>
-  <div id="gifArea"></div>
+  <h1>Untuk Kamu, yang Sedang Berjuang</h1>
+  <p>Kamu nggak sendiri. Hari ini mungkin berat, tapi kamu jauh lebih kuat dari yang kamu kira. 🌤️</p>
 
-  <!-- Musik Latar -->
-  <div class="audio-control">
-    <audio id="musikLatar" loop>
-      <source src="https://www.bensound.com/bensound-music/bensound-smile.mp3" type="audio/mpeg">
-      Browser kamu tidak mendukung audio.
-    </audio>
-    <br>
-    <button class="btn" onclick="toggleMusik()">🔊 Play/Pause Musik</button>
-  </div>
+  <button onclick="tampilkanKata()">Butuh semangat? Klik di sini 💛</button>
+
+  <div class="quote" id="quoteArea">...</div>
+
+  <audio id="musik" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
 
   <script>
-    function ucapanAwal() {
-      const kalimatPembuka = [
-        "Hari ini harus lebih semangat dari kemarin ya, Ayang!",
-        "Kamu hebat! Jangan lupa istirahat juga 💤",
-        "Kalau kamu capek... inget, aku dukung kamu terus 💪💖",
-        "Mau hari seburuk apapun, senyummu tetap paling terang 🌈"
-      ];
-      document.getElementById("awal").innerText = kalimatPembuka[Math.floor(Math.random() * kalimatPembuka.length)];
-    }
-
-    const semangats = [
-      "Kamu tuh keren banget. Lebih keren dari playlist Spotify kamu! 🎧",
-      "Semangat yaaa! Kamu kuat kayak WiFi full bar 💪📶",
-      "Kalau hidupmu drama, aku penontonnya yang setia 🍿",
-      "Inget ya... kamu satu-satunya yang bisa bikin aku senyum kayak orang bego 😅",
-      "Ayang! Jangan menyerah, nanti kita nggak bisa beli cilok bareng 🥹"
+    const quotes = [
+      "Tenang... kamu sedang tumbuh. Proses itu nggak selalu nyaman, tapi berarti 🌱",
+      "Satu langkah kecil pun tetap langkah. Pelan tapi sampai 💫",
+      "Aku tahu kamu capek. Tapi aku juga tahu kamu nggak akan nyerah 🤍",
+      "Kamu boleh istirahat, tapi jangan berhenti 🌿",
+      "Kamu adalah alasan seseorang tersenyum hari ini. Jangan meremehkan dirimu."
     ];
 
-    const gifs = [
-      "https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif",
-      "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-      "https://media.giphy.com/media/3ohzdYJK1wAdPWVk88/giphy.gif",
-      "https://media.giphy.com/media/l3vR3z8j4N8Ewh5EQ/giphy.gif",
-      "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
-    ];
-
-    function kasihSemangat() {
-      const pesan = semangats[Math.floor(Math.random() * semangats.length)];
-      const gif = gifs[Math.floor(Math.random() * gifs.length)];
-      document.getElementById("semangat").textContent = pesan;
-      document.getElementById("gifArea").innerHTML = `<img src="${gif}" alt="Semangat Ayang!">`;
+    function tampilkanKata() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      const quoteArea = document.getElementById("quoteArea");
+      quoteArea.style.opacity = 0;
+      setTimeout(() => {
+        quoteArea.innerText = quote;
+        quoteArea.style.opacity = 1;
+      }, 300);
     }
 
-    function mainkanMusik() {
-      const audio = document.getElementById("musikLatar");
-      audio.volume = 0.2; // Volume pelan
+    function mulaiMusik() {
+      const audio = document.getElementById("musik");
+      audio.volume = 0.2;
       audio.play().catch(() => {
-        console.log("Autoplay ditolak browser. Gunakan tombol Play.");
+        console.log("Musik tidak bisa autoplay karena diblokir browser.");
       });
-    }
-
-    function toggleMusik() {
-      const audio = document.getElementById("musikLatar");
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
     }
   </script>
 
