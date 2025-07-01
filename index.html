@@ -37,6 +37,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s;
+      margin: 10px;
     }
     button:hover {
       background-color: #8cbf97;
@@ -48,6 +49,7 @@
       color: #444;
       max-width: 500px;
       transition: opacity 0.5s ease-in-out;
+      min-height: 50px;
     }
     .rabbit {
       width: 150px;
@@ -72,6 +74,9 @@
     audio {
       display: none;
     }
+    #btnSurat {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -79,11 +84,16 @@
   <h1>Untuk Kamu, yang Sedang Berjuang</h1>
   <p>Kamu nggak sendiri. Hari ini mungkin berat, tapi kamu jauh lebih kuat dari yang kamu kira. 🌤️</p>
 
-  <button onclick="tampilkanSemua()">Butuh semangat? Klik di sini 💛</button>
+  <!-- Tombol Semangat -->
+  <button onclick="tampilkanQuote()">Butuh semangat? Klik di sini 💛</button>
 
+  <!-- Area Quote -->
   <div class="quote" id="quoteArea">...</div>
-  
-  <!-- Rabbit Animation -->
+
+  <!-- Tombol Surat -->
+  <button id="btnSurat" onclick="tampilkanSurat()">💌 Surat Kecil Untukmu</button>
+
+  <!-- Rabbit GIF -->
   <img src="https://media.giphy.com/media/3oz8xqZsDaOSHaqLCw/giphy.gif" id="rabbit" class="rabbit" alt="Rabbit Invasion">
 
   <!-- Surat Cinta -->
@@ -99,6 +109,7 @@
     </p>
   </div>
 
+  <!-- Musik -->
   <audio id="musik" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
   </audio>
@@ -111,41 +122,47 @@
       "Kamu boleh istirahat, tapi jangan berhenti 🌿",
       "Kamu adalah alasan seseorang tersenyum hari ini. Jangan meremehkan dirimu."
     ];
-    let selesai = false;
 
-    function tampilkanSemua() {
-      if (selesai) return;
-      selesai = true;
+    let musikDimainkan = false;
 
-      // Quote
+    function tampilkanQuote() {
       const quote = quotes[Math.floor(Math.random() * quotes.length)];
-      const qel = document.getElementById("quoteArea");
-      qel.style.opacity = 0;
+      const quoteArea = document.getElementById("quoteArea");
+
+      quoteArea.style.opacity = 0;
       setTimeout(() => {
-        qel.innerText = quote;
-        qel.style.opacity = 1;
+        quoteArea.innerText = quote;
+        quoteArea.style.opacity = 1;
       }, 300);
 
-      // Musik
-      const audio = document.getElementById("musik");
-      audio.volume = 0.2;
-      audio.play().catch(() => console.log("Autoplay diblokir, tapi musik akan aktif jika di-tap dulu."));
+      if (!musikDimainkan) {
+        const audio = document.getElementById("musik");
+        audio.volume = 0.2;
+        audio.play().catch(() => {});
+        musikDimainkan = true;
+      }
 
-      // Rabbit Animation
+      // Tampilkan tombol surat setelah delay
+      setTimeout(() => {
+        document.getElementById("btnSurat").style.display = "inline-block";
+      }, 1500);
+    }
+
+    function tampilkanSurat() {
       const rabbit = document.getElementById("rabbit");
-      setTimeout(() => {
-        rabbit.style.opacity = 1;
-        rabbit.style.transform = "scale(1)";
-      }, 600);
+      const surat = document.getElementById("suratCinta");
 
-      // Surat Muncul setelah rabbit
+      // Animasi kelinci
+      rabbit.style.opacity = 1;
+      rabbit.style.transform = "scale(1)";
+
+      // Tampilkan surat setelah kelinci
       setTimeout(() => {
-        const s = document.getElementById("suratCinta");
-        s.style.display = 'block';
+        surat.style.display = 'block';
         setTimeout(() => {
-          s.style.opacity = 1;
+          surat.style.opacity = 1;
         }, 100);
-      }, 1400);
+      }, 1000);
     }
   </script>
 
