@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Untuk Kamu, yang Sedang Berjuang 🌿</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -54,16 +54,16 @@
     .surat {
       margin-top: 30px;
       max-width: 700px;
-      font-size: 1.2rem;
-      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      font-family: 'Great Vibes', cursive;
       background-color: #ffffffcc;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
       color: #333;
       display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      text-align: left;
+      white-space: pre-wrap;
     }
     audio {
       display: none;
@@ -88,17 +88,7 @@
   <button id="btnSurat" onclick="tampilkanSurat()">💌 Surat Kecil Untukmu</button>
 
   <!-- Surat Cinta -->
-  <div class="surat" id="suratCinta">
-    <h2>💌</h2>
-    <p>
-      Hai kamu, orang yang luar biasa...<br><br>
-      Aku tahu beberapa hari bisa terasa berat, dan kadang kamu lupa betapa berharganya dirimu.  
-      Tapi aku nggak akan pernah lupa.<br><br>
-      Kamu hebat. Kamu kuat. Dan aku selalu ada di sini, mendukung kamu dalam diam atau dalam peluk.<br><br>
-      Kalau lelah, istirahat ya. Tapi jangan menyerah.<br><br>
-      Aku sayang kamu — lebih dari kata-kata bisa gambarkan. 🤍
-    </p>
-  </div>
+  <div class="surat" id="suratCinta"></div>
 
   <!-- Musik -->
   <audio id="musik" loop>
@@ -113,6 +103,17 @@
       "Kamu boleh istirahat, tapi jangan berhenti 🌿",
       "Kamu adalah alasan seseorang tersenyum hari ini. Jangan meremehkan dirimu."
     ];
+
+    const isiSurat = `Hai kamu, orang yang luar biasa...
+
+Aku tahu beberapa hari bisa terasa berat, dan kadang kamu lupa betapa berharganya dirimu.  
+Tapi aku nggak akan pernah lupa.
+
+Kamu hebat. Kamu kuat. Dan aku selalu ada di sini, mendukung kamu dalam diam atau dalam peluk.
+
+Kalau lelah, istirahat ya. Tapi jangan menyerah.
+
+Aku sayang kamu — lebih dari kata-kata bisa gambarkan. 🤍`;
 
     let musikDimainkan = false;
 
@@ -140,9 +141,17 @@
     function tampilkanSurat() {
       const surat = document.getElementById("suratCinta");
       surat.style.display = 'block';
-      setTimeout(() => {
-        surat.style.opacity = 1;
-      }, 100);
+      ketikSurat(isiSurat, surat);
+    }
+
+    function ketikSurat(teks, elemen, kecepatan = 35) {
+      let i = 0;
+      elemen.textContent = '';
+      const interval = setInterval(() => {
+        elemen.textContent += teks[i];
+        i++;
+        if (i >= teks.length) clearInterval(interval);
+      }, kecepatan);
     }
   </script>
 
