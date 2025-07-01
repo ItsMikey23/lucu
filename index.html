@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Untuk Kamu, yang Sedang Berjuang 🌿</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -54,8 +54,8 @@
     .surat {
       margin-top: 30px;
       max-width: 700px;
-      font-size: 1.6rem;
-      font-family: 'Great Vibes', cursive;
+      font-size: 1.2rem;
+      /* font-family: 'Inter', sans-serif; default font */
       background-color: #ffffffcc;
       padding: 30px;
       border-radius: 12px;
@@ -64,6 +64,8 @@
       display: none;
       text-align: left;
       white-space: pre-wrap;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
     audio {
       display: none;
@@ -78,21 +80,16 @@
   <h1>Untuk Kamu, yang Sedang Berjuang</h1>
   <p>Kamu nggak sendiri. Hari ini mungkin berat, tapi kamu jauh lebih kuat dari yang kamu kira. 🌤️</p>
 
-  <!-- Tombol Semangat -->
   <button onclick="tampilkanQuote()">Butuh semangat? Klik di sini 💛</button>
 
-  <!-- Area Quote -->
   <div class="quote" id="quoteArea">...</div>
 
-  <!-- Tombol Surat -->
   <button id="btnSurat" onclick="tampilkanSurat()">💌 Surat Kecil Untukmu</button>
 
-  <!-- Surat Cinta -->
   <div class="surat" id="suratCinta"></div>
 
-  <!-- Musik -->
   <audio id="musik" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
@@ -141,6 +138,7 @@ Aku sayang kamu — lebih dari kata-kata bisa gambarkan. 🤍`;
     function tampilkanSurat() {
       const surat = document.getElementById("suratCinta");
       surat.style.display = 'block';
+      surat.style.opacity = 0;
       ketikSurat(isiSurat, surat);
     }
 
@@ -150,7 +148,10 @@ Aku sayang kamu — lebih dari kata-kata bisa gambarkan. 🤍`;
       const interval = setInterval(() => {
         elemen.textContent += teks[i];
         i++;
-        if (i >= teks.length) clearInterval(interval);
+        if (i >= teks.length) {
+          clearInterval(interval);
+          elemen.style.opacity = 1;
+        }
       }, kecepatan);
     }
   </script>
